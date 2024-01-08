@@ -1,22 +1,25 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace _91_Sumas
 {
     internal class Program
     {
 
-    //        /*
-    //        * Crea una función que encuentre todas las combinaciones de los números
-    //        * de una lista que suman el valor objetivo.
-    //        * - La función recibirá una lista de números enteros positivos
-    //        *   y un valor objetivo.
-    //        * - Para obtener las combinaciones sólo se puede usar
-    //        *   una vez cada elemento de la lista (pero pueden existir
-    //        *   elementos repetidos en ella).
-    //        * - Ejemplo: Lista = [1, 5, 3, 2],  Objetivo = 6
-    //        *   Soluciones: [1, 5] y [1, 3, 2] (ambas combinaciones suman 6)
-    //        *   (Si no existen combinaciones, retornar una lista vacía)
-    //        */
+        /*
+        * Crea una función que encuentre todas las combinaciones de los números
+        * de una lista que suman el valor objetivo.
+        * - La función recibirá una lista de números enteros positivos
+        *   y un valor objetivo.
+        * - Para obtener las combinaciones sólo se puede usar
+        *   una vez cada elemento de la lista (pero pueden existir
+        *   elementos repetidos en ella).
+        * - Ejemplo: Lista = [1, 5, 3, 2],  Objetivo = 6
+        *   Soluciones: [1, 5] y [1, 3, 2] (ambas combinaciones suman 6)
+        *   (Si no existen combinaciones, retornar una lista vacía)
+        *   -> Se hará con arrays en vez de listas
+        */
+
         static void Main(string[] args)
         {
             int[] array = { 1, 5, 3, 2 };
@@ -57,7 +60,12 @@ namespace _91_Sumas
                 int[][] result = new int[0][];
                 for (int i = start; i < array.Length; i++)
                 {
-                    int[][] subResult = FindCombinationsHelper(array, target - array[i], i);
+                    if (i > start && array[i] == array[i - 1])
+                    {
+                        continue;
+                    }
+
+                    int[][] subResult = FindCombinationsHelper(array, target - array[i], i + 1);
                     for (int j = 0; j < subResult.Length; j++)
                     {
                         int[] combination = new int[subResult[j].Length + 1];
