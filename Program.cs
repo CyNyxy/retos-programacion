@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml.Linq;
 
 namespace _91_Sumas
 {
@@ -58,14 +57,19 @@ namespace _91_Sumas
             else
             {
                 int[][] result = new int[0][];
-                for (int i = start; i < array.Length; i++)
+                for (int i = start; i < array.Length && array[i] <= target; i++)
                 {
                     if (i > start && array[i] == array[i - 1])
                     {
                         continue;
                     }
+                    if (array[i] > target)
+                    {
+                        break;
+                    }
 
                     int[][] subResult = FindCombinationsHelper(array, target - array[i], i + 1);
+
                     for (int j = 0; j < subResult.Length; j++)
                     {
                         int[] combination = new int[subResult[j].Length + 1];
