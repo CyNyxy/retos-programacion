@@ -84,3 +84,62 @@ namespace _91_Sumas
         }
     }
 }
+
+//////////////////////////////////////////////////////
+
+//// Solución listas
+//using System;
+//using System.Collections.Generic;
+
+//namespace _91_Sumas
+//{ 
+//    internal class Program
+//    {
+//        static void Main(string[] args)
+//        {
+//            int[] array = { 1, 5, 3, 2 };
+//            int target = 6;
+//            List<List<int>> combinations = FindCombinations(array, target);
+//            if (combinations.Count == 0)
+//            {
+//                Console.WriteLine("No existen combinaciones que sumen el valor objetivo.");
+//            }
+//            else
+//            {
+//                Console.WriteLine("Las siguientes combinaciones suman el valor objetivo:");
+//                foreach (List<int> combination in combinations)
+//                {
+//                    Console.WriteLine(string.Join(", ", combination));
+//                }
+//            }
+//        }
+
+//        static List<List<int>> FindCombinations(int[] array, int target)
+//        {
+//            List<List<int>> combinations = new List<List<int>>();
+//            List<int> current = new List<int>();
+//            Array.Sort(array);
+//            FindCombinationsHelper(array, target, 0, current, combinations);
+//            return combinations;
+//        }
+
+//        static void FindCombinationsHelper(int[] array, int target, int start, List<int> current, List<List<int>> combinations)
+//        {
+//            if (target == 0)
+//            {
+//                combinations.Add(new List<int>(current));
+//                return;
+//            }
+//            for (int i = start; i < array.Length && array[i] <= target; i++)
+//            {
+//                if (i > start && array[i] == array[i - 1])
+//                {
+//                    continue;
+//                }
+//                current.Add(array[i]);
+//                FindCombinationsHelper(array, target - array[i], i + 1, current, combinations);
+//                current.RemoveAt(current.Count - 1);
+//            }
+//        }
+//    }
+//}
